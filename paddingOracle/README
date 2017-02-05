@@ -1,0 +1,42 @@
+In this challenge, you are required to implement a padding oracle attack on AES
+operating in CBC mode. Don't worry if that doesn't make any sense to you. You
+don't need to know how AES works to implement this attack. You can treat it as
+a black box which takes a key and plaintext as input and produces a ciphertext
+as output. It is a block cipher, which means that it encrypts and decrypts data
+in chunks of one blocksize at a time (16 bytes in this case). Here are a few
+resources to help you get started:
+
+Block cipher mode of operation: https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Common_modes
+(Understanding ECB and CBC is enough)
+Padding oracle attack:
+    https://github.com/neuhalje/aes_padding_oracle_attack,
+    http://robertheaton.com/2013/07/29/padding-oracle-attack/
+Ask us on Slack if you have any difficulty in understanding these concepts.
+
+Problem statement: You are given the encrypted token 3491aeb434a9c1836157ec86c17d403b4c11daffb909f4f3bb23b3a8a787f156892ff06a99b75f32ad5a0430e5fbdc05136d118a8853080e60754d16866919b6e25bd1991f62656968fb5660e47e4ce1.
+Your task is to decrypt it without knowing the AES key.
+
+You are given a web app written in python. You can go through its source and
+run it on your machine. It accepts an encrypted token, decrypts it and displays
+the corresponding username. Your attack should not assume knowledge of the key
+hard-coded in the source. You can interact with the server only through HTTP
+requests, so no looking at server logs, changing the source etc.
+
+Setup:
+1. Install pip:
+    On Ubuntu:
+    sudo apt-get install python-pip
+2. Install required python packages:
+    cd to the challenge directory
+    sudo pip install -r requirements.txt
+3. Launch the server:
+    python app.py
+
+If everything goes fine, you should be able to access the server at http://localhost:5000.
+
+There are several freely available tools and libraries which can help you
+automate padding oracle attacks. For better understanding however, you should
+write your exploit from scratch and not rely on such tools.
+
+Bonus problem: Without using the key, forge a token which when decrypted, will
+log you in as user root.
